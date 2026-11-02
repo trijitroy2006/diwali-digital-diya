@@ -157,6 +157,7 @@ function setupAudioButton() {
   const btn = document.getElementById('toggle-audio-btn');
   const label = document.getElementById('audio-btn-label');
   const icon = document.getElementById('audio-icon');
+  const audioTrack = document.getElementById('festive-audio-track');
 
   btn.addEventListener('click', () => {
     initAudioContext();
@@ -165,12 +166,28 @@ function setupAudioButton() {
     if (isAudioPlaying) {
       label.textContent = 'Festive Music: ON 🪔';
       icon.setAttribute('data-lucide', 'volume-2');
-      bgMusicInterval = setInterval(playFestiveMelodyStep, 650);
-      playFestiveMelodyStep();
+
+      // Play real recorded traditional Sitar audio track
+      if (audioTrack) {
+        audioTrack.volume = 0.65;
+        audioTrack.play().catch(e => {
+          console.warn('Real audio play blocked, falling back to Web Audio synth:', e);
+          bgMusicInterval = setInterval(playFestiveMelodyStep, 650);
+          playFestiveMelodyStep();
+        });
+      } else {
+        bgMusicInterval = setInterval(playFestiveMelodyStep, 650);
+        playFestiveMelodyStep();
+      }
     } else {
       label.textContent = 'Festive Music: OFF';
       icon.setAttribute('data-lucide', 'volume-x');
-      clearInterval(bgMusicInterval);
+      if (audioTrack) {
+        audioTrack.pause();
+      }
+      if (bgMusicInterval) {
+        clearInterval(bgMusicInterval);
+      }
     }
     if (window.lucide) lucide.createIcons();
   });
