@@ -1,6 +1,6 @@
 # 🪔 Diwali Digital Diya – Festive Greeting Website
 
-A responsive, interactive, and personalized Diwali greeting web application built for the **Diwali Digital Diya Website Greeting Contest**, jointly organized by **GDG on Campus JIS University** and **AWS Student Builder Group (SBG) at JIS University**.
+A responsive, interactive, and personalized Diwali greeting web application built with modern web technologies.
 
 Live Demo: *(Deployable instantly to AWS Amplify / GitHub Pages / Google Cloud / Vercel)*
 
@@ -66,9 +66,7 @@ firebase deploy
 
 ---
 
-## 👥 Contest Attribution
-- **Contest:** Diwali Digital Diya – Website Greeting Contest
-- **Organizers:** Google Developer Group (GDG) on Campus JIS University & AWS Student Builder Group (SBG) at JIS University
+## 👤 Author
 - **Author:** Trijit Roy
 
 ---
