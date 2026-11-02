@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diwali Digital Diya ✨ | Festive Greeting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- Canvas Confetti & Lucide Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <!-- Background Elements -->
+  <canvas id="fireworks-canvas"></canvas>
+  <div class="stars-container" id="stars"></div>
+
+  <!-- Decorative Hanging Torans / Latkans -->
+  <div class="hanging-decorations" aria-hidden="true">
+    <div class="toran-garland"></div>
+    <div class="hanging-lantern lantern-1">🏮</div>
+    <div class="hanging-lantern lantern-2">🪔</div>
+    <div class="hanging-lantern lantern-3">🏮</div>
+    <div class="hanging-lantern lantern-4">🪔</div>
+    <div class="hanging-lantern lantern-5">🏮</div>
+  </div>
+
+  <!-- Sound & Ambient Audio Controls -->
+  <header class="top-nav">
+    <div class="brand-badge">
+      <span class="badge-icon">🪔</span>
+      <div class="badge-text">
+        <span class="contest-title">GDG on Campus &bull; AWS SBG JISU</span>
+        <span class="contest-sub">Diwali Digital Diya 2026</span>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <button id="toggle-audio-btn" class="glass-btn" title="Toggle Festive Sitar & Festive Beats">
+        <i data-lucide="volume-2" id="audio-icon"></i>
+        <span id="audio-btn-label">Festive Music: OFF</span>
+      </button>
+      <button id="theme-firework-btn" class="glass-btn btn-primary" title="Launch Mega Burst">
+        <i data-lucide="sparkles"></i> Burst Crackers
+      </button>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <!-- Hero / Greeting Card Container -->
+    <section class="card-hero">
+      <div class="shubh-diwali-badge">✨ शुभ दीपावली ✨</div>
+      <h1 class="main-heading">Diwali Digital Diya</h1>
+      <p class="sub-greeting" id="greeting-subtitle">
+        May the divine light of diyas guide you towards joy, health, and limitless prosperity.
+      </p>
+
+      <!-- Recipient Display Tag -->
+      <div class="greeting-target-card" id="greeting-banner">
+        <span class="wishing-label">Warmest Wishes To</span>
+        <h2 class="recipient-name" id="display-recipient">Our Loved Ones & Friends</h2>
+        <p class="custom-note" id="display-message">
+          "Wishing you and your family a glittering festival of lights filled with warm moments, sparkling happiness, and glowing success!"
+        </p>
+        <span class="sender-tag" id="display-sender">— From Trijit Roy & Family</span>
+      </div>
+
+      <!-- Sacred Central Interactive Diya -->
+      <div class="interactive-diya-stage">
+        <div class="diya-glow-halo" id="diya-aura"></div>
+        <div class="diya-assembly" id="main-diya" role="button" tabindex="0" title="Click or tap to light the Diya!">
+          <!-- Realistic SVG Diya with dynamic flame -->
+          <svg class="diya-svg" viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="inner-gold" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#FFF2A3"/>
+                <stop offset="60%" stop-color="#FF9E00"/>
+                <stop offset="100%" stop-color="#B23A00"/>
+              </radialGradient>
+              <linearGradient id="clay-body" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#E25822"/>
+                <stop offset="40%" stop-color="#A52A2A"/>
+                <stop offset="100%" stop-color="#591409"/>
+              </linearGradient>
+              <filter id="flame-glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="8" result="blur1"/>
+                <feGaussianBlur stdDeviation="16" result="blur2"/>
+                <feMerge>
+                  <feMergeNode in="blur2"/>
+                  <feMergeNode in="blur1"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+
+            <!-- Base Bowl / Clay Lamp -->
+            <ellipse cx="160" cy="180" rx="100" ry="24" fill="#3D0B02" opacity="0.6"/>
+            <!-- Body of the Diya -->
+            <path d="M 60 140 C 60 190, 260 190, 260 140 C 260 170, 230 195, 160 195 C 90 195, 60 170, 60 140 Z" fill="url(#clay-body)" />
+            <!-- Rim Ornamentation -->
+            <ellipse cx="160" cy="140" rx="100" ry="22" fill="#781D08" stroke="#FFD700" stroke-width="3"/>
+            <!-- Golden Oil Pool inside -->
+            <ellipse cx="160" cy="142" rx="85" ry="16" fill="url(#inner-gold)"/>
+
+            <!-- Diya Decorative Dots / Pearls -->
+            <circle cx="85" cy="143" r="3.5" fill="#FFE87C"/>
+            <circle cx="105" cy="148" r="3.5" fill="#FFE87C"/>
+            <circle cx="130" cy="151" r="3.5" fill="#FFE87C"/>
+            <circle cx="160" cy="153" r="4.5" fill="#FFE87C"/>
+            <circle cx="190" cy="151" r="3.5" fill="#FFE87C"/>
+            <circle cx="215" cy="148" r="3.5" fill="#FFE87C"/>
+            <circle cx="235" cy="143" r="3.5" fill="#FFE87C"/>
+
+            <!-- Diya Beak Wick Base -->
+            <ellipse cx="160" cy="132" rx="7" ry="4" fill="#222"/>
+
+            <!-- Sacred Flame (Animates when lit) -->
+            <g id="svg-flame" class="flame-group lit">
+              <!-- Outer Aura -->
+              <path class="flame-outer" d="M160 50 C140 85, 136 115, 160 132 C184 115, 180 85, 160 50 Z" 
+                    fill="#FF4500" filter="url(#flame-glow)" opacity="0.85"/>
+              <!-- Mid Flame -->
+              <path class="flame-mid" d="M160 65 C145 92, 142 118, 160 132 C178 118, 175 92, 160 65 Z" 
+                    fill="#FFA500"/>
+              <!-- Inner Core -->
+              <path class="flame-core" d="M160 85 C152 102, 150 122, 160 132 C170 122, 168 102, 160 85 Z" 
+                    fill="#FFFFD0"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="diya-action-caption">
+          <p id="diya-status-msg">
+            <span class="pulse-sparkle">✨</span> Tap the Diya to rekindle & make a wish! <span class="pulse-sparkle">✨</span>
+          </p>
+          <div class="blessing-tally">
+            <span class="blessing-counter-pill">Diyas Lighted Globally: <strong id="diyas-count">108</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Festive Rangoli Canvas / Pattern Floor -->
+      <div class="rangoli-container">
+        <svg class="rangoli-svg" viewBox="0 0 300 300">
+          <g transform="translate(150, 150)">
+            <circle r="130" stroke="#FFD700" stroke-width="1.5" stroke-dasharray="6,6" fill="none" opacity="0.4"/>
+            <circle r="100" stroke="#FF6F61" stroke-width="2" fill="none" opacity="0.5"/>
+            <circle r="70" stroke="#00E5FF" stroke-width="1.5" stroke-dasharray="4,4" fill="none" opacity="0.6"/>
+            <!-- 8-petal mandala -->
+            <g id="rangoli-petals">
+              <!-- Dynamically duplicated petals via CSS / inline paths -->
+              <path d="M 0 -100 Q 25 -50 0 0 Q -25 -50 0 -100" fill="#E91E63" opacity="0.4"/>
+              <path d="M 0 -100 Q 25 -50 0 0 Q -25 -50 0 -100" fill="#E91E63" opacity="0.4" transform="rotate(45)"/>
+              <path d="M 0 -100 Q 25 -50 0 0 Q -25 -50 0 -100" fill="#E91E63" opacity="0.4" transform="rotate(90)"/>
+              <path d="M 0 -100 Q 25 -50 0 0 Q -25 -50 0 -100" fill="#E91E63" opacity="0.4" transform="rotate(135)"/>
+              <path d="M 0 -100 Q 25 -50 0 0 Q -25 -50 0 -100" fill="#E91E63" opacity="0.4" transform="rotate(180)"/>
+              <path d="M 0 -100 Q 25 -50 0 0 Q -25 -50 0 -100" fill="#E91E63" opacity="0.4" transform="rotate(225)"/>
+              <path d="M 0 -100 Q 25 -50 0 0 Q -25 -50 0 -100" fill="#E91E63" opacity="0.4" transform="rotate(270)"/>
+              <path d="M 0 -100 Q 25 -50 0 0 Q -25 -50 0 -100" fill="#E91E63" opacity="0.4" transform="rotate(315)"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Quick Interactive Firework buttons & crackers -->
+      <div class="cracker-shelf">
+        <span class="shelf-title">✨ Sparklers & Crackers Zone ✨</span>
+        <div class="shelf-buttons">
+          <button class="cracker-btn" onclick="triggerEffect('chakra')">🌀 Anar & Chakra</button>
+          <button class="cracker-btn" onclick="triggerEffect('rocket')">🚀 Sky Rocket</button>
+          <button class="cracker-btn" onclick="triggerEffect('sparkler')">✨ Phuljhadi (Sparkler)</button>
+          <button class="cracker-btn" onclick="triggerEffect('blessing')">🌸 Flower Shower</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Personalized Greeting Generator Section -->
+    <section class="card-customizer">
+      <div class="customizer-header">
+        <div class="step-pill">Customizer</div>
+        <h2>Create & Share Your Personalized Digital Diya</h2>
+        <p>Customize the recipient name, festive wish, and your name. Generate an instant shareable link to send via WhatsApp, Instagram, or Email!</p>
+      </div>
+
+      <form id="greeting-form" class="greeting-form" onsubmit="event.preventDefault(); updateGreeting();">
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="input-recipient"><i data-lucide="user"></i> Who is this wish for?</label>
+            <input type="text" id="input-recipient" placeholder="e.g. Grandma, Rahul, Dev Team, Bestie" required maxlength="50">
+          </div>
+
+          <div class="input-group">
+            <label for="input-sender"><i data-lucide="heart"></i> Your Name / From</label>
+            <input type="text" id="input-sender" placeholder="e.g. Trijit Roy" required maxlength="50">
+          </div>
+        </div>
+
+        <div class="input-group full-width">
+          <label for="input-message"><i data-lucide="message-square"></i> Your Heartfelt Festive Message</label>
+          <textarea id="input-message" rows="3" placeholder="Write your personalized Diwali blessings..."></textarea>
+          
+          <div class="preset-wishes">
+            <span class="preset-label">Quick Wishes:</span>
+            <button type="button" class="preset-chip" onclick="applyPreset(1)">🌟 Joy & Health</button>
+            <button type="button" class="preset-chip" onclick="applyPreset(2)">💼 Success & Career</button>
+            <button type="button" class="preset-chip" onclick="applyPreset(3)">🌸 Family Bliss</button>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="glass-btn btn-primary action-btn">
+            <i data-lucide="sparkle"></i> Apply & Preview Card
+          </button>
+          <button type="button" class="glass-btn action-btn" onclick="copyShareableLink()">
+            <i data-lucide="share-2"></i> Copy Shareable Link
+          </button>
+          <button type="button" class="glass-btn btn-whatsapp action-btn" onclick="shareToWhatsApp()">
+            <i data-lucide="send"></i> Share on WhatsApp
+          </button>
+        </div>
+        <div id="copy-notification" class="notification-bubble">Link copied to clipboard! Ready to share! 🪔</div>
+      </form>
+    </section>
+
+    <!-- Contest & Tech Attribution Section -->
+    <section class="contest-info-card">
+      <div class="contest-logos">
+        <div class="partner-badge gdg-badge">
+          <svg viewBox="0 0 192 192" width="28" height="28" fill="none">
+            <path d="M46 64L80 98L46 132L12 98L46 64Z" fill="#EA4335"/>
+            <path d="M146 64L180 98L146 132L112 98L146 64Z" fill="#4285F4"/>
+            <path d="M80 98L96 82L112 98L96 114L80 98Z" fill="#0F9D58"/>
+          </svg>
+          <span>GDG on Campus &bull; JIS University</span>
+        </div>
+        <div class="partner-badge aws-badge">
+          <span class="aws-icon">☁️</span>
+          <span>AWS Student Builder Group (SBG) JISU</span>
+        </div>
+      </div>
+      <p class="contest-desc">
+        Crafted with pure Web APIs (HTML5 Canvas, Web Audio API, SVG Physics, Glassmorphic CSS3). Optimized for cloud deployment on <strong>AWS Amplify / AWS S3 & CloudFront</strong> and Google Developer ecosystem.
+      </p>
+      <div class="badge-features">
+        <span class="feature-tag">✨ Interactive Diya Physics</span>
+        <span class="feature-tag">🎵 Procedural Web Audio Synth</span>
+        <span class="feature-tag">🎆 Multi-stage Fireworks Particle Engine</span>
+        <span class="feature-tag">🔗 URL Hash State Sharing</span>
+        <span class="feature-tag">📱 Responsive Mobile-First</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Diwali Digital Diya &copy; 2026. Made with ❤️ by <strong>Trijit Roy</strong> for GDG & AWS SBG JIS University.</p>
+    <p class="footer-sub">May millions of lamps illuminate your life with endless joy and prosperity.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
