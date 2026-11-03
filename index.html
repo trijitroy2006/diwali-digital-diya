@@ -219,14 +219,16 @@
         </svg>
       </div>
 
-      <!-- Quick Interactive Firework buttons & crackers with REAL IMAGES -->
+      <!-- Quick Interactive Firework buttons & crackers with REAL IMAGES & LIVE BURNING SIMULATION -->
       <div class="cracker-shelf">
-        <span class="shelf-title">✨ Virtual Firecrackers & Sparklers Zone (Click to Ignite!) ✨</span>
+        <span class="shelf-title">✨ Virtual Firecrackers & Sparklers Zone (Click to Ignite Live!) ✨</span>
         <div class="cracker-gallery-grid">
-          <div class="cracker-card" onclick="triggerEffect('sparkler')">
+          <div class="cracker-card" id="card-sparkler" onclick="triggerEffect('sparkler', this)">
             <div class="cracker-img-wrap">
               <img src="images/sparkler.jpg" alt="Golden Phuljhadi Sparkler" class="cracker-img" loading="lazy">
               <div class="spark-overlay">✨</div>
+              <div class="burning-fire-canvas-overlay"></div>
+              <div class="live-flame-badge">BURNING 🔥</div>
             </div>
             <div class="cracker-card-body">
               <span class="cracker-name">✨ Phuljhadi (Sparkler)</span>
@@ -234,10 +236,12 @@
             </div>
           </div>
 
-          <div class="cracker-card" onclick="triggerEffect('anar')">
+          <div class="cracker-card" id="card-anar" onclick="triggerEffect('anar', this)">
             <div class="cracker-img-wrap">
               <img src="images/anar.jpg" alt="Fountain Anar Cracker" class="cracker-img" loading="lazy">
               <div class="spark-overlay">🔥</div>
+              <div class="burning-fire-canvas-overlay"></div>
+              <div class="live-flame-badge">BURNING 🔥</div>
             </div>
             <div class="cracker-card-body">
               <span class="cracker-name">🌋 Flowerpot (Anar)</span>
@@ -245,10 +249,12 @@
             </div>
           </div>
 
-          <div class="cracker-card" onclick="triggerEffect('chakra')">
+          <div class="cracker-card" id="card-chakra" onclick="triggerEffect('chakra', this)">
             <div class="cracker-img-wrap">
               <img src="images/chakra.jpg" alt="Ground Spinner Chakra" class="cracker-img" loading="lazy">
               <div class="spark-overlay">🌀</div>
+              <div class="burning-fire-canvas-overlay"></div>
+              <div class="live-flame-badge">SPINNING 🌀</div>
             </div>
             <div class="cracker-card-body">
               <span class="cracker-name">🌀 Ground Chakra</span>
@@ -256,10 +262,12 @@
             </div>
           </div>
 
-          <div class="cracker-card" onclick="triggerEffect('rocket')">
+          <div class="cracker-card" id="card-rocket" onclick="triggerEffect('rocket', this)">
             <div class="cracker-img-wrap">
               <img src="images/rocket.jpg" alt="Sky Rocket Fireworks" class="cracker-img" loading="lazy">
               <div class="spark-overlay">🚀</div>
+              <div class="burning-fire-canvas-overlay"></div>
+              <div class="live-flame-badge">LAUNCHED 🚀</div>
             </div>
             <div class="cracker-card-body">
               <span class="cracker-name">🚀 Sky Rocket Burst</span>
@@ -267,10 +275,12 @@
             </div>
           </div>
 
-          <div class="cracker-card" onclick="triggerEffect('lanterns')">
+          <div class="cracker-card" id="card-lanterns" onclick="triggerEffect('lanterns', this)">
             <div class="cracker-img-wrap">
               <img src="images/lanterns.jpg" alt="Glowing Sky Lanterns" class="cracker-img" loading="lazy">
               <div class="spark-overlay">🏮</div>
+              <div class="burning-fire-canvas-overlay"></div>
+              <div class="live-flame-badge">GLOWING ✨</div>
             </div>
             <div class="cracker-card-body">
               <span class="cracker-name">🏮 Sky Lanterns</span>
@@ -278,10 +288,12 @@
             </div>
           </div>
 
-          <div class="cracker-card" onclick="triggerEffect('ladi')">
+          <div class="cracker-card" id="card-ladi" onclick="triggerEffect('ladi', this)">
             <div class="cracker-img-wrap cracker-img-ladi">
               <img src="images/anar.jpg" alt="1000-Wala Garland Ladi" class="cracker-img" style="filter: hue-rotate(330deg) saturate(1.8);" loading="lazy">
               <div class="spark-overlay">💥</div>
+              <div class="burning-fire-canvas-overlay"></div>
+              <div class="live-flame-badge">BURSTING 💥</div>
             </div>
             <div class="cracker-card-body">
               <span class="cracker-name">💥 1000-Wala Ladi</span>

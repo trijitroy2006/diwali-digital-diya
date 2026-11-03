@@ -731,9 +731,87 @@ body {
   line-height: 1.2;
 }
 
-.cracker-tag {
-  font-size: 0.68rem;
-  color: var(--gold-primary);
+/* Live Fire Burning Simulation on Card */
+.burning-fire-canvas-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 60%, rgba(255, 120, 0, 0.4), rgba(255, 0, 80, 0.3), transparent 70%);
+  opacity: 0;
+  mix-blend-mode: screen;
+  transition: opacity 0.3s ease;
+}
+
+.live-flame-badge {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: linear-gradient(90deg, #FF4500, #FFD700);
+  color: #000;
+  font-weight: 800;
+  font-size: 0.65rem;
+  letter-spacing: 0.8px;
+  padding: 0.15rem 0.5rem;
+  border-radius: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #FF9900;
+  white-space: nowrap;
+}
+
+/* Card Active Burning State */
+.cracker-card.is-burning {
+  border-color: #FF7700 !important;
+  box-shadow: 0 0 30px rgba(255, 100, 0, 0.8), inset 0 0 20px rgba(255, 200, 0, 0.5) !important;
+  animation: cardJitter 0.15s infinite alternate ease-in-out;
+}
+
+.cracker-card.is-burning .burning-fire-canvas-overlay {
+  opacity: 1;
+  animation: fireGlowPulse 0.25s infinite alternate ease-in-out;
+}
+
+.cracker-card.is-burning .live-flame-badge {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.cracker-card.is-burning .cracker-img {
+  filter: brightness(1.35) contrast(1.3) saturate(1.4);
+}
+
+/* Special Burning Animations for Different Types */
+.cracker-card#card-chakra.is-burning .cracker-img {
+  animation: chakraSpinFast 0.3s infinite linear;
+}
+
+.cracker-card#card-sparkler.is-burning .cracker-img {
+  animation: sparklerGlowFlicker 0.12s infinite alternate ease-in-out;
+}
+
+@keyframes cardJitter {
+  0% { transform: translateY(-4px) rotate(-1deg); }
+  100% { transform: translateY(-5px) rotate(1deg); }
+}
+
+@keyframes fireGlowPulse {
+  0% { background: radial-gradient(circle at 50% 50%, rgba(255, 220, 0, 0.8), rgba(255, 60, 0, 0.5), transparent 75%); }
+  100% { background: radial-gradient(circle at 50% 40%, rgba(255, 255, 150, 0.9), rgba(255, 30, 0, 0.7), transparent 85%); }
+}
+
+@keyframes chakraSpinFast {
+  from { transform: scale(1.15) rotate(0deg); }
+  to { transform: scale(1.15) rotate(360deg); }
+}
+
+@keyframes sparklerGlowFlicker {
+  0% { filter: brightness(1.2) contrast(1.2); }
+  100% { filter: brightness(1.6) contrast(1.5) drop-shadow(0 0 12px #FFD700); }
 }
 
 /* ==========================================================

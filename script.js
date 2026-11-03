@@ -500,9 +500,18 @@ function loopAmbientEffects() {
   }
 }
 
-// --- Cracker Trigger Shelf Effects ---
-function triggerEffect(type) {
+// --- Cracker Trigger Shelf Effects with Live Burning State ---
+function triggerEffect(type, element) {
   initAudioContext();
+
+  // If a cracker card element is clicked, activate its live burning state
+  if (element && element.classList) {
+    element.classList.add('is-burning');
+    const burnDuration = type === 'ladi' ? 1800 : (type === 'chakra' ? 2500 : 1800);
+    setTimeout(() => {
+      element.classList.remove('is-burning');
+    }, burnDuration);
+  }
   switch (type) {
     case 'chakra':
       playTone(600, 'sawtooth', 0.8, 0.15);

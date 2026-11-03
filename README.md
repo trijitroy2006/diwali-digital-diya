@@ -2,27 +2,29 @@
 
 A responsive, interactive, and personalized Diwali greeting web application built with modern web technologies.
 
-Live Demo: *(Deployable instantly to AWS Amplify / GitHub Pages / Google Cloud / Vercel)*
+🌐 **Live Website Link:** [https://trijitroy2006.github.io/diwali-digital-diya/](https://trijitroy2006.github.io/diwali-digital-diya/)
 
 ---
 
 ## ✨ Features & Highlights
 
+- **Live Burning Firecracker Zone (Real Photography & Simulation):**
+  - Real photography cards for Sparkler (Phuljhadi), Anar (Flowerpot), Ground Chakra, Sky Rocket, Sky Lanterns, and 1000-Wala Ladi.
+  - Interactive live burning simulation: clicking any card sets it on fire in real-time with flame pulses, high-speed spin physics, glowing embers, and synchronized crackling audio!
 - **Interactive Sacred Diya (Physics & Flame Aura):**
   - Custom SVG clay diya with multi-layered glowing flames.
   - Interactive tap-to-rekindle action that casts blessings, increments the global lamp tally, and sparks festive particles.
-- **Synthesized Festive Ambient Music (Web Audio API):**
-  - Zero-bandwidth procedural audio synthesizer playing traditional Indian pentatonic scale (*Raag Yaman / Bhairav*) sitar strums and temple bells without requiring external MP3 files.
-- **Canvas Fireworks & Sparkler Engine:**
-  - Real-time particle physics simulating sky rockets, anars (fountains), spinning chakras, and flower petals.
+- **Panch-Diya (5 Holy Lamps) Lighting Row:**
+  - Light 5 sacred diyas for Prosperity, Wisdom, Courage, Peace, and Health.
+- **Interactive Rangoli Drawing Studio:**
+  - Live 8-fold symmetric canvas to draw festive Rangolis with colored powder swatches and auto-mandala generator.
+- **Traditional Instrumental Sitar & Audio Synthesizer:**
+  - High-quality recorded instrumental Sitar loop with fallback to procedural Web Audio synthesizer (*Raag Yaman / Bhairav*).
 - **Personalized Greeting Generator & Shareable Links:**
   - Custom recipient name, heartfelt blessing, and sender signature.
-  - Automatically serializes state into URL hashes (e.g. `#to=Grandma&from=Trijit&msg=...`).
-  - One-click copy link and WhatsApp direct-share integration.
-- **Festive Aesthetic & Festive Rangoli:**
-  - Traditional hanging torans and swinging lanterns.
-  - Rotating decorative mathematical SVG rangoli with glowing golden accents.
-  - Glassmorphic crimson and deep midnight purple background.
+  - Instant WhatsApp sharing, URL hash sharing, and PNG image card downloader.
+- **4 Royal Color Themes:**
+  - Crimson, Midnight Navy, Imperial Gold, and Festive Emerald.
 
 ---
 
