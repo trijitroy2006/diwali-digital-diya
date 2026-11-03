@@ -219,16 +219,75 @@
         </svg>
       </div>
 
-      <!-- Quick Interactive Firework buttons & crackers -->
+      <!-- Quick Interactive Firework buttons & crackers with REAL IMAGES -->
       <div class="cracker-shelf">
-        <span class="shelf-title">✨ Virtual Firecrackers & Sparklers Zone ✨</span>
-        <div class="shelf-buttons">
-          <button class="cracker-btn" onclick="triggerEffect('chakra')">🌀 Anar & Chakra</button>
-          <button class="cracker-btn" onclick="triggerEffect('rocket')">🚀 Sky Rocket</button>
-          <button class="cracker-btn" onclick="triggerEffect('sparkler')">✨ Phuljhadi (Sparkler)</button>
-          <button class="cracker-btn" onclick="triggerEffect('ladi')">💥 1000-Wala Ladi</button>
-          <button class="cracker-btn" onclick="triggerEffect('lanterns')">🏮 Sky Lanterns</button>
-          <button class="cracker-btn" onclick="triggerEffect('blessing')">🌸 Rose & Marigold Shower</button>
+        <span class="shelf-title">✨ Virtual Firecrackers & Sparklers Zone (Click to Ignite!) ✨</span>
+        <div class="cracker-gallery-grid">
+          <div class="cracker-card" onclick="triggerEffect('sparkler')">
+            <div class="cracker-img-wrap">
+              <img src="images/sparkler.jpg" alt="Golden Phuljhadi Sparkler" class="cracker-img" loading="lazy">
+              <div class="spark-overlay">✨</div>
+            </div>
+            <div class="cracker-card-body">
+              <span class="cracker-name">✨ Phuljhadi (Sparkler)</span>
+              <span class="cracker-tag">Golden Sparks</span>
+            </div>
+          </div>
+
+          <div class="cracker-card" onclick="triggerEffect('anar')">
+            <div class="cracker-img-wrap">
+              <img src="images/anar.jpg" alt="Fountain Anar Cracker" class="cracker-img" loading="lazy">
+              <div class="spark-overlay">🔥</div>
+            </div>
+            <div class="cracker-card-body">
+              <span class="cracker-name">🌋 Flowerpot (Anar)</span>
+              <span class="cracker-tag">Glitter Fountain</span>
+            </div>
+          </div>
+
+          <div class="cracker-card" onclick="triggerEffect('chakra')">
+            <div class="cracker-img-wrap">
+              <img src="images/chakra.jpg" alt="Ground Spinner Chakra" class="cracker-img" loading="lazy">
+              <div class="spark-overlay">🌀</div>
+            </div>
+            <div class="cracker-card-body">
+              <span class="cracker-name">🌀 Ground Chakra</span>
+              <span class="cracker-tag">Whistling Spinner</span>
+            </div>
+          </div>
+
+          <div class="cracker-card" onclick="triggerEffect('rocket')">
+            <div class="cracker-img-wrap">
+              <img src="images/rocket.jpg" alt="Sky Rocket Fireworks" class="cracker-img" loading="lazy">
+              <div class="spark-overlay">🚀</div>
+            </div>
+            <div class="cracker-card-body">
+              <span class="cracker-name">🚀 Sky Rocket Burst</span>
+              <span class="cracker-tag">Mega Aerial Shot</span>
+            </div>
+          </div>
+
+          <div class="cracker-card" onclick="triggerEffect('lanterns')">
+            <div class="cracker-img-wrap">
+              <img src="images/lanterns.jpg" alt="Glowing Sky Lanterns" class="cracker-img" loading="lazy">
+              <div class="spark-overlay">🏮</div>
+            </div>
+            <div class="cracker-card-body">
+              <span class="cracker-name">🏮 Sky Lanterns</span>
+              <span class="cracker-tag">Floating Blessings</span>
+            </div>
+          </div>
+
+          <div class="cracker-card" onclick="triggerEffect('ladi')">
+            <div class="cracker-img-wrap cracker-img-ladi">
+              <img src="images/anar.jpg" alt="1000-Wala Garland Ladi" class="cracker-img" style="filter: hue-rotate(330deg) saturate(1.8);" loading="lazy">
+              <div class="spark-overlay">💥</div>
+            </div>
+            <div class="cracker-card-body">
+              <span class="cracker-name">💥 1000-Wala Ladi</span>
+              <span class="cracker-tag">Rapid Pop Garland</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

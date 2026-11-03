@@ -519,6 +519,26 @@ function triggerEffect(type) {
       }
       break;
 
+    case 'anar':
+      // Sparkling flower pot fountain sound & visual
+      playTone(550, 'sawtooth', 1.2, 0.2);
+      setTimeout(() => playTone(850, 'sawtooth', 1.0, 0.18), 300);
+      if (typeof confetti === 'function') {
+        const start = Date.now();
+        (function anarBurst() {
+          confetti({
+            particleCount: 12,
+            angle: 90,
+            spread: 50,
+            startVelocity: 45,
+            origin: { x: 0.5, y: 0.8 },
+            colors: ['#FFD700', '#FFA500', '#FF4500', '#FFFFFF']
+          });
+          if (Date.now() - start < 1200) requestAnimationFrame(anarBurst);
+        })();
+      }
+      break;
+
     case 'rocket':
       playTone(300, 'triangle', 0.5, 0.2);
       setTimeout(() => playTone(180, 'square', 0.4, 0.3), 500);
