@@ -588,6 +588,88 @@ function triggerEffect(type, element) {
       for (let l = 0; l < 8; l++) setTimeout(spawnSkyLantern, l * 250);
       break;
 
+    case 'bomb':
+      // Big deep sub-bass boom with screen flash
+      playTone(180, 'sawtooth', 0.2, 0.3);
+      setTimeout(() => {
+        playTone(60, 'square', 0.8, 0.6); // Deep sub explosion
+        playTone(90, 'sine', 1.2, 0.4);
+      }, 250);
+
+      if (typeof confetti === 'function') {
+        setTimeout(() => {
+          confetti({
+            particleCount: 120,
+            spread: 120,
+            origin: { y: 0.6, x: 0.5 },
+            colors: ['#FF0000', '#FF4500', '#FFD700', '#FFFFFF', '#000000']
+          });
+        }, 250);
+      }
+      break;
+
+    case 'peacock':
+      // Melodic multi-tone peacock fan fountain
+      playTone(523.25, 'triangle', 0.8, 0.2);
+      setTimeout(() => playTone(659.25, 'triangle', 0.8, 0.2), 150);
+      setTimeout(() => playTone(783.99, 'triangle', 0.8, 0.2), 300);
+      setTimeout(() => playTone(987.77, 'triangle', 0.8, 0.2), 450);
+
+      if (typeof confetti === 'function') {
+        const pColors = ['#00E5FF', '#1DE9B6', '#76FF03', '#FFD700', '#9C27B0'];
+        confetti({
+          particleCount: 90,
+          spread: 110,
+          startVelocity: 40,
+          origin: { y: 0.7, x: 0.5 },
+          colors: pColors
+        });
+      }
+      break;
+
+    case 'snake':
+      // Sizzling smoke ash sound
+      playTone(450, 'sawtooth', 0.5, 0.12);
+      setTimeout(() => playTone(350, 'sawtooth', 0.8, 0.15), 200);
+      setTimeout(() => playTone(250, 'sawtooth', 1.2, 0.18), 500);
+
+      if (typeof confetti === 'function') {
+        for (let s = 0; s < 5; s++) {
+          setTimeout(() => {
+            confetti({
+              particleCount: 16,
+              angle: 90,
+              spread: 30,
+              startVelocity: 25,
+              origin: { y: 0.75, x: 0.5 },
+              colors: ['#333333', '#555555', '#777777', '#FF8F00']
+            });
+          }, s * 220);
+        }
+      }
+      break;
+
+    case 'willow':
+      // Golden waterfall sound
+      playTone(400, 'sine', 0.6, 0.2);
+      setTimeout(() => playTone(700, 'sine', 1.5, 0.25), 400);
+
+      // Launch 2 high golden sky fireworks
+      setTimeout(launchAutoFirework, 100);
+      setTimeout(launchAutoFirework, 400);
+
+      if (typeof confetti === 'function') {
+        setTimeout(() => {
+          confetti({
+            particleCount: 110,
+            spread: 140,
+            origin: { y: 0.35, x: 0.5 },
+            colors: ['#FFF8DC', '#FFD700', '#FFAE19', '#FFFFFF']
+          });
+        }, 500);
+      }
+      break;
+
     case 'blessing':
       playTone(523.25, 'sine', 1.0, 0.2);
       playTone(659.25, 'sine', 1.2, 0.18);
