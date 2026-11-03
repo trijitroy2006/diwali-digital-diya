@@ -1,12 +1,12 @@
 /* ==========================================================
    Diwali Digital Diya - Festive Styling System
-   Palettes: Royal Crimson, Saffron Gold, Midnight Navy, Lotus Rose
+   Dynamic Themes: Crimson, Midnight Navy, Imperial Gold, Emerald
    ========================================================== */
 
 :root {
   --bg-midnight: #0b0213;
   --bg-deep-crimson: #2a081a;
-  --bg-card: rgba(28, 9, 30, 0.72);
+  --bg-card: rgba(28, 9, 30, 0.75);
   --gold-primary: #FFD700;
   --gold-warm: #FFAE19;
   --saffron-light: #FF8F00;
@@ -20,6 +20,38 @@
   --text-muted: #D9A0B8;
   --border-glass: rgba(255, 215, 0, 0.28);
   --shadow-glow: 0 0 25px rgba(255, 174, 25, 0.45);
+  --bg-gradient: radial-gradient(circle at 50% 20%, #3e0b29 0%, #1c0516 45%, #08020d 100%);
+}
+
+/* Theme Classes */
+body.theme-crimson {
+  --bg-gradient: radial-gradient(circle at 50% 20%, #460d2e 0%, #200619 45%, #0a010d 100%);
+  --bg-card: rgba(35, 10, 32, 0.78);
+  --border-glass: rgba(255, 215, 0, 0.32);
+}
+
+body.theme-midnight {
+  --bg-gradient: radial-gradient(circle at 50% 20%, #0d1e46 0%, #060e25 45%, #02040d 100%);
+  --bg-card: rgba(9, 20, 48, 0.8);
+  --border-glass: rgba(100, 200, 255, 0.35);
+  --gold-primary: #64D2FF;
+  --text-secondary: #D4E8FF;
+}
+
+body.theme-gold {
+  --bg-gradient: radial-gradient(circle at 50% 20%, #4a3407 0%, #291c03 45%, #0f0a00 100%);
+  --bg-card: rgba(41, 28, 5, 0.82);
+  --border-glass: rgba(255, 215, 0, 0.45);
+  --gold-primary: #FFE066;
+  --text-secondary: #FFF3C4;
+}
+
+body.theme-emerald {
+  --bg-gradient: radial-gradient(circle at 50% 20%, #063d27 0%, #032115 45%, #010d08 100%);
+  --bg-card: rgba(6, 40, 26, 0.8);
+  --border-glass: rgba(80, 250, 160, 0.35);
+  --gold-primary: #5AFAB4;
+  --text-secondary: #D8FFE8;
 }
 
 * {
@@ -30,12 +62,13 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at 50% 20%, #3e0b29 0%, #1c0516 45%, #08020d 100%);
+  background: var(--bg-gradient);
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
   line-height: 1.6;
+  transition: background 0.6s ease;
 }
 
 /* Background Canvas for Fireworks */
@@ -47,6 +80,17 @@ body {
   height: 100vh;
   pointer-events: none;
   z-index: 1;
+}
+
+/* Ambient Floating Canvas (Petals, Lanterns) */
+#ambient-effects-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2;
 }
 
 /* Starfield / Twinkling particles */
@@ -126,12 +170,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 2rem;
+  padding: 1rem 2rem;
   position: relative;
   z-index: 20;
   background: rgba(18, 4, 21, 0.65);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-glass);
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .brand-badge {
@@ -164,7 +210,46 @@ body {
 
 .nav-actions {
   display: flex;
+  align-items: center;
   gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+/* Theme Selector Pill */
+.theme-selector-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-glass);
+  border-radius: 50px;
+  padding: 0.25rem 0.6rem;
+}
+
+.theme-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-right: 0.2rem;
+}
+
+.theme-btn {
+  background: transparent;
+  border: none;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0.15rem;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.theme-btn:hover {
+  transform: scale(1.25);
+}
+
+.theme-btn.active {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 4px var(--gold-primary));
 }
 
 /* Glass Buttons */
@@ -183,6 +268,11 @@ body {
   cursor: pointer;
   transition: all 0.25s ease;
   backdrop-filter: blur(8px);
+}
+
+.glass-btn.btn-sm {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8rem;
 }
 
 .glass-btn:hover {
@@ -285,18 +375,24 @@ body {
   background: rgba(45, 12, 39, 0.65);
   border: 1px dashed rgba(255, 215, 0, 0.5);
   border-radius: 18px;
-  padding: 1.5rem;
+  padding: 1.8rem 1.5rem;
   margin: 0 auto 2rem;
   max-width: 650px;
   position: relative;
   transition: all 0.3s ease;
 }
 
-.greeting-target-card:hover {
-  border-style: solid;
+.card-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
   border-color: var(--gold-primary);
-  box-shadow: 0 8px 30px rgba(255, 153, 0, 0.18);
+  border-style: solid;
 }
+.corner-tl { top: 6px; left: 6px; border-width: 2px 0 0 2px; }
+.corner-tr { top: 6px; right: 6px; border-width: 2px 2px 0 0; }
+.corner-bl { bottom: 6px; left: 6px; border-width: 0 0 2px 2px; }
+.corner-br { bottom: 6px; right: 6px; border-width: 0 2px 2px 0; }
 
 .wishing-label {
   font-size: 0.78rem;
@@ -330,14 +426,14 @@ body {
   margin-top: 0.6rem;
 }
 
-/* Interactive Diya Stage */
+/* Sacred Central Diya */
 .interactive-diya-stage {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 1.5rem 0 2rem;
+  margin: 1.5rem 0 1.8rem;
 }
 
 .diya-glow-halo {
@@ -369,10 +465,6 @@ body {
   transform: scale(1.06);
 }
 
-.diya-assembly:active {
-  transform: scale(0.96);
-}
-
 .diya-svg {
   width: 100%;
   height: 100%;
@@ -380,19 +472,8 @@ body {
   filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.6));
 }
 
-/* Flame Animation */
-.flame-group {
-  transform-origin: 160px 132px;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
 .flame-group.lit {
   animation: flameFlicker 1.8s infinite ease-in-out alternate;
-}
-
-.flame-group.unlit {
-  opacity: 0;
-  transform: scale(0.2);
 }
 
 @keyframes flameFlicker {
@@ -429,7 +510,106 @@ body {
   color: var(--gold-primary);
 }
 
-/* Rangoli Floor Pattern */
+/* ==========================================================
+   NEW OPTION 1: Sacred Panch-Diya (5 Holy Lamps) Row
+   ========================================================== */
+.panch-diya-container {
+  background: rgba(30, 8, 30, 0.5);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin: 1.8rem auto 1.2rem;
+  max-width: 720px;
+}
+
+.panch-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.15rem;
+  color: var(--gold-primary);
+  margin-bottom: 0.3rem;
+}
+
+.panch-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+}
+
+.mini-diyas-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.mini-diya-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.6rem 0.9rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 14px;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.mini-diya-unit:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-primary);
+}
+
+.mini-flame {
+  font-size: 1.3rem;
+  opacity: 0.2;
+  filter: grayscale(1);
+  transition: all 0.4s ease;
+}
+
+.mini-lamp {
+  font-size: 2rem;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
+}
+
+.mini-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+  transition: color 0.3s ease;
+}
+
+.mini-diya-unit.lit {
+  background: rgba(255, 174, 25, 0.15);
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 18px rgba(255, 174, 25, 0.4);
+}
+
+.mini-diya-unit.lit .mini-flame {
+  opacity: 1;
+  filter: grayscale(0) drop-shadow(0 0 8px #FF9900);
+  animation: miniFlicker 1.2s infinite alternate ease-in-out;
+}
+
+.mini-diya-unit.lit .mini-label {
+  color: var(--gold-primary);
+}
+
+@keyframes miniFlicker {
+  0% { transform: scale(1) translateY(0); }
+  100% { transform: scale(1.15) translateY(-2px); }
+}
+
+.panch-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+}
+
+/* Rangoli Floor */
 .rangoli-container {
   display: flex;
   justify-content: center;
@@ -450,9 +630,9 @@ body {
   to { transform: rotate(360deg); }
 }
 
-/* Cracker Interactive Shelf */
+/* Virtual Cracker Shelf */
 .cracker-shelf {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(255, 215, 0, 0.2);
 }
@@ -478,10 +658,10 @@ body {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 215, 0, 0.3);
   color: #fff;
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1.1rem;
   border-radius: 12px;
   font-family: inherit;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -492,6 +672,95 @@ body {
   border-color: var(--gold-primary);
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
+}
+
+/* ==========================================================
+   NEW OPTION 2: Interactive Rangoli Artist Studio
+   ========================================================== */
+.card-rangoli-maker {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 2px solid var(--border-glass);
+  border-radius: 28px;
+  padding: 2.2rem 2rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.rangoli-maker-ui {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.rangoli-colors-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: rgba(20, 5, 25, 0.6);
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  border: 1px solid var(--border-glass);
+}
+
+.toolbar-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.color-swatch {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.color-swatch:hover {
+  transform: scale(1.2);
+}
+
+.color-swatch.active {
+  transform: scale(1.25);
+  box-shadow: 0 0 10px #fff;
+  border-color: #ffd700;
+}
+
+.rangoli-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 0.8rem;
+}
+
+.rangoli-drawing-stage {
+  position: relative;
+  border: 2px solid var(--border-glass);
+  border-radius: 20px;
+  background: radial-gradient(circle, #250821 0%, #0d020c 100%);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  max-width: 100%;
+}
+
+#custom-rangoli-canvas {
+  display: block;
+  cursor: crosshair;
+  max-width: 100%;
+  height: auto;
+}
+
+.canvas-hint {
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  pointer-events: none;
 }
 
 /* Greeting Customizer Card */
@@ -641,12 +910,47 @@ body {
   animation: fadeIn 0.3s ease;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ==========================================================
+   NEW OPTION 3: Sacred Shloka Card
+   ========================================================== */
+.card-shloka {
+  background: linear-gradient(135deg, rgba(46, 12, 38, 0.7), rgba(18, 5, 21, 0.8));
+  border: 1px solid var(--border-glass);
+  border-radius: 24px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* Contest Info & Attribution */
+.om-symbol {
+  font-size: 2.2rem;
+  display: inline-block;
+  margin-bottom: 0.4rem;
+  filter: drop-shadow(0 0 12px var(--gold-primary));
+}
+
+.shloka-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.5rem;
+  color: var(--gold-primary);
+  margin-bottom: 0.4rem;
+}
+
+.shloka-trans {
+  font-style: italic;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 0.6rem;
+}
+
+.shloka-meaning {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto 1.2rem;
+}
+
+/* Features & Tech Attribution */
 .contest-info-card {
   background: rgba(22, 6, 25, 0.6);
   border: 1px solid var(--border-glass);
@@ -673,10 +977,6 @@ body {
   border-radius: 12px;
   font-size: 0.88rem;
   font-weight: 600;
-}
-
-.aws-icon {
-  font-size: 1.3rem;
 }
 
 .contest-desc {
@@ -737,6 +1037,14 @@ body {
 
   .action-btn {
     width: 100%;
+  }
+
+  .mini-diyas-row {
+    gap: 0.6rem;
+  }
+
+  .mini-diya-unit {
+    padding: 0.4rem 0.6rem;
   }
 
   .hanging-lantern:nth-child(even) {

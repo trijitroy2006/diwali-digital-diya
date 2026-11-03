@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diwali Digital Diya ✨ | Festive Greeting</title>
+  <title>Diwali Digital Diya ✨ | Interactive Festive Experience</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -12,9 +12,11 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
-  <!-- Background Elements -->
+<body class="theme-crimson">
+  <!-- Dynamic Sky Fireworks Canvas -->
   <canvas id="fireworks-canvas"></canvas>
+  <!-- Floating Flower Petals / Sky Lanterns Canvas -->
+  <canvas id="ambient-effects-canvas"></canvas>
   <div class="stars-container" id="stars"></div>
 
   <!-- Decorative Hanging Torans / Latkans -->
@@ -41,12 +43,21 @@
       </div>
     </div>
     <div class="nav-actions">
-      <button id="toggle-audio-btn" class="glass-btn" title="Toggle Festive Sitar & Festive Beats">
+      <!-- Quick Theme Switcher Pill -->
+      <div class="theme-selector-pill">
+        <span class="theme-label">Theme:</span>
+        <button class="theme-btn active" data-theme="crimson" title="Royal Crimson">🔴</button>
+        <button class="theme-btn" data-theme="midnight" title="Midnight Navy">🔵</button>
+        <button class="theme-btn" data-theme="gold" title="Imperial Golden">🟡</button>
+        <button class="theme-btn" data-theme="emerald" title="Festive Emerald">🟢</button>
+      </div>
+
+      <button id="toggle-audio-btn" class="glass-btn" title="Toggle Festive Sitar & Music">
         <i data-lucide="volume-2" id="audio-icon"></i>
-        <span id="audio-btn-label">Festive Music: OFF</span>
+        <span id="audio-btn-label">Music: OFF</span>
       </button>
       <button id="theme-firework-btn" class="glass-btn btn-primary" title="Launch Mega Burst">
-        <i data-lucide="sparkles"></i> Burst Crackers
+        <i data-lucide="sparkles"></i> Sky Burst
       </button>
     </div>
   </header>
@@ -57,11 +68,16 @@
       <div class="shubh-diwali-badge">✨ शुभ दीपावली ✨</div>
       <h1 class="main-heading">Diwali Digital Diya</h1>
       <p class="sub-greeting" id="greeting-subtitle">
-        May the divine light of diyas guide you towards joy, health, and limitless prosperity.
+        May the divine glow of sacred diyas illuminate your life with infinite bliss, auspicious beginnings, and lasting peace.
       </p>
 
       <!-- Recipient Display Tag -->
       <div class="greeting-target-card" id="greeting-banner">
+        <div class="card-corner corner-tl"></div>
+        <div class="card-corner corner-tr"></div>
+        <div class="card-corner corner-bl"></div>
+        <div class="card-corner corner-br"></div>
+        
         <span class="wishing-label">Warmest Wishes To</span>
         <h2 class="recipient-name" id="display-recipient">Our Loved Ones & Friends</h2>
         <p class="custom-note" id="display-message">
@@ -73,7 +89,7 @@
       <!-- Sacred Central Interactive Diya -->
       <div class="interactive-diya-stage">
         <div class="diya-glow-halo" id="diya-aura"></div>
-        <div class="diya-assembly" id="main-diya" role="button" tabindex="0" title="Click or tap to light the Diya!">
+        <div class="diya-assembly" id="main-diya" role="button" tabindex="0" title="Click or tap to rekindle the Diya!">
           <!-- Realistic SVG Diya with dynamic flame -->
           <svg class="diya-svg" viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -144,7 +160,44 @@
         </div>
       </div>
 
-      <!-- Festive Rangoli Canvas / Pattern Floor -->
+      <!-- NEW OPTION 1: Sacred 5-Diyas Lighting Row (Panch Deepak) -->
+      <div class="panch-diya-container">
+        <div class="panch-title">🪔 Light the Sacred Panch-Diya (5 Holy Lamps) 🪔</div>
+        <p class="panch-sub">Click each mini-diya to light up prosperity, wisdom, courage, peace, and health!</p>
+        <div class="mini-diyas-row">
+          <div class="mini-diya-unit" onclick="toggleMiniDiya(1)" id="mini-diya-1" title="Light for Prosperity">
+            <div class="mini-flame">🔥</div>
+            <div class="mini-lamp">🪔</div>
+            <span class="mini-label">Prosperity</span>
+          </div>
+          <div class="mini-diya-unit" onclick="toggleMiniDiya(2)" id="mini-diya-2" title="Light for Wisdom">
+            <div class="mini-flame">🔥</div>
+            <div class="mini-lamp">🪔</div>
+            <span class="mini-label">Wisdom</span>
+          </div>
+          <div class="mini-diya-unit" onclick="toggleMiniDiya(3)" id="mini-diya-3" title="Light for Courage">
+            <div class="mini-flame">🔥</div>
+            <div class="mini-lamp">🪔</div>
+            <span class="mini-label">Courage</span>
+          </div>
+          <div class="mini-diya-unit" onclick="toggleMiniDiya(4)" id="mini-diya-4" title="Light for Peace">
+            <div class="mini-flame">🔥</div>
+            <div class="mini-lamp">🪔</div>
+            <span class="mini-label">Peace</span>
+          </div>
+          <div class="mini-diya-unit" onclick="toggleMiniDiya(5)" id="mini-diya-5" title="Light for Good Health">
+            <div class="mini-flame">🔥</div>
+            <div class="mini-lamp">🪔</div>
+            <span class="mini-label">Health</span>
+          </div>
+        </div>
+        <div class="panch-controls">
+          <button class="glass-btn btn-sm" onclick="lightAllMiniDiyas()"><i data-lucide="flame"></i> Light All 5 Diyas</button>
+          <button class="glass-btn btn-sm" onclick="resetMiniDiyas()"><i data-lucide="rotate-ccw"></i> Reset</button>
+        </div>
+      </div>
+
+      <!-- Festive Rangoli Floor -->
       <div class="rangoli-container">
         <svg class="rangoli-svg" viewBox="0 0 300 300">
           <g transform="translate(150, 150)">
@@ -153,7 +206,6 @@
             <circle r="70" stroke="#00E5FF" stroke-width="1.5" stroke-dasharray="4,4" fill="none" opacity="0.6"/>
             <!-- 8-petal mandala -->
             <g id="rangoli-petals">
-              <!-- Dynamically duplicated petals via CSS / inline paths -->
               <path d="M 0 -100 Q 25 -50 0 0 Q -25 -50 0 -100" fill="#E91E63" opacity="0.4"/>
               <path d="M 0 -100 Q 25 -50 0 0 Q -25 -50 0 -100" fill="#E91E63" opacity="0.4" transform="rotate(45)"/>
               <path d="M 0 -100 Q 25 -50 0 0 Q -25 -50 0 -100" fill="#E91E63" opacity="0.4" transform="rotate(90)"/>
@@ -169,12 +221,46 @@
 
       <!-- Quick Interactive Firework buttons & crackers -->
       <div class="cracker-shelf">
-        <span class="shelf-title">✨ Sparklers & Crackers Zone ✨</span>
+        <span class="shelf-title">✨ Virtual Firecrackers & Sparklers Zone ✨</span>
         <div class="shelf-buttons">
           <button class="cracker-btn" onclick="triggerEffect('chakra')">🌀 Anar & Chakra</button>
           <button class="cracker-btn" onclick="triggerEffect('rocket')">🚀 Sky Rocket</button>
           <button class="cracker-btn" onclick="triggerEffect('sparkler')">✨ Phuljhadi (Sparkler)</button>
-          <button class="cracker-btn" onclick="triggerEffect('blessing')">🌸 Flower Shower</button>
+          <button class="cracker-btn" onclick="triggerEffect('ladi')">💥 1000-Wala Ladi</button>
+          <button class="cracker-btn" onclick="triggerEffect('lanterns')">🏮 Sky Lanterns</button>
+          <button class="cracker-btn" onclick="triggerEffect('blessing')">🌸 Rose & Marigold Shower</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW OPTION 2: Interactive Rangoli Artist Studio -->
+    <section class="card-rangoli-maker">
+      <div class="customizer-header">
+        <div class="step-pill">Creative Studio</div>
+        <h2>🎨 Interactive Rangoli Canvas</h2>
+        <p>Pick festive powdered colors and draw your own sacred symmetric Rangoli on the canvas!</p>
+      </div>
+      
+      <div class="rangoli-maker-ui">
+        <!-- Color Palette -->
+        <div class="rangoli-colors-toolbar">
+          <span class="toolbar-label">Powder Color:</span>
+          <button class="color-swatch active" style="background: #FFD700;" data-color="#FFD700" title="Kesar Gold"></button>
+          <button class="color-swatch" style="background: #E91E63;" data-color="#E91E63" title="Gulabi Rose"></button>
+          <button class="color-swatch" style="background: #FF5722;" data-color="#FF5722" title="Sindoor Orange"></button>
+          <button class="color-swatch" style="background: #00E5FF;" data-color="#00E5FF" title="Peacock Cyan"></button>
+          <button class="color-swatch" style="background: #76FF03;" data-color="#76FF03" title="Emerald Green"></button>
+          <button class="color-swatch" style="background: #FFFFFF;" data-color="#FFFFFF" title="Chuna White"></button>
+          
+          <div class="rangoli-actions">
+            <button class="glass-btn btn-sm" onclick="clearRangoliCanvas()"><i data-lucide="trash-2"></i> Clear</button>
+            <button class="glass-btn btn-sm" onclick="presetMandala()"><i data-lucide="sparkle"></i> Auto Mandala</button>
+          </div>
+        </div>
+
+        <div class="rangoli-drawing-stage">
+          <canvas id="custom-rangoli-canvas" width="460" height="460"></canvas>
+          <div class="canvas-hint">Click & drag your mouse or finger to create 8-fold symmetric patterns!</div>
         </div>
       </div>
     </section>
@@ -209,6 +295,8 @@
             <button type="button" class="preset-chip" onclick="applyPreset(1)">🌟 Joy & Health</button>
             <button type="button" class="preset-chip" onclick="applyPreset(2)">💼 Success & Career</button>
             <button type="button" class="preset-chip" onclick="applyPreset(3)">🌸 Family Bliss</button>
+            <button type="button" class="preset-chip" onclick="applyPreset(4)">🙏 Shloka Blessing</button>
+            <button type="button" class="preset-chip" onclick="applyPreset(5)">✨ Friendship & Love</button>
           </div>
         </div>
 
@@ -222,9 +310,25 @@
           <button type="button" class="glass-btn btn-whatsapp action-btn" onclick="shareToWhatsApp()">
             <i data-lucide="send"></i> Share on WhatsApp
           </button>
+          <button type="button" class="glass-btn action-btn" onclick="downloadGreetingCard()">
+            <i data-lucide="download"></i> Download Wish Card
+          </button>
         </div>
         <div id="copy-notification" class="notification-bubble">Link copied to clipboard! Ready to share! 🪔</div>
       </form>
+    </section>
+
+    <!-- NEW OPTION 3: Sacred Diwali Aarti & Shloka Section -->
+    <section class="card-shloka">
+      <div class="shloka-banner">
+        <span class="om-symbol">🕉️</span>
+        <h3 class="shloka-title">तमसो मा ज्योतिर्गमय</h3>
+        <p class="shloka-trans">"Tamaso Mā Jyotir-Gamaya | Lead us from darkness unto light"</p>
+        <p class="shloka-meaning">
+          May the festival of lights conquer all doubts, illuminate minds with supreme wisdom, and bring harmony to every home.
+        </p>
+        <button class="glass-btn btn-sm" onclick="playTempleBells()"><i data-lucide="bell"></i> Ring Sacred Temple Bell</button>
+      </div>
     </section>
 
     <!-- Features & Tech Showcase Section -->
@@ -243,8 +347,12 @@
       </p>
       <div class="badge-features">
         <span class="feature-tag">✨ Interactive Diya Physics</span>
+        <span class="feature-tag">🪔 5-Diyas Panch-Deepak Lighting</span>
+        <span class="feature-tag">🎨 Interactive Rangoli Maker Studio</span>
+        <span class="feature-tag">🎨 4 Festive Royal Color Themes</span>
         <span class="feature-tag">🎵 Traditional Instrumental Sitar</span>
         <span class="feature-tag">🎆 Multi-stage Fireworks Particle Engine</span>
+        <span class="feature-tag">📥 Greeting Card Image Exporter</span>
         <span class="feature-tag">🔗 URL Hash State Sharing</span>
         <span class="feature-tag">📱 Responsive Mobile-First</span>
       </div>
