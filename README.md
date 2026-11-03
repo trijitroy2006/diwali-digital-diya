@@ -59,17 +59,12 @@ firebase deploy
 
 ---
 
-## 🛠️ Technology Stack
+## ✨ Technology Stack
 - **HTML5 & SVG:** Semantic markup and scalable vector illustration.
 - **CSS3 Modern Layouts:** CSS Grid, Flexbox, custom animations, and glassmorphic UI.
 - **Vanilla JavaScript (ES6+):** Lightweight, zero heavy framework overhead.
 - **Web Audio API:** Real-time audio oscillator and gain nodes.
 - **HTML5 Canvas:** 60fps firework particle simulation.
-
----
-
-## 👤 Author
-- **Author:** Trijit Roy
 
 ---
 *May this festival of lights illuminate your life with joy, wisdom, and success! Happy Diwali!* 🪔✨
